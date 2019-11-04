@@ -57,9 +57,17 @@ if (count($logs) >= 0){
     }
 
     echo '<th class="state">state</th>'."\n\r";
-    echo "<th>TG</th>\n\r";
+    
+    if( (TG == "SHOW") ) {
+    	echo "<th>TG</th>\n\r";
+    }
+
     echo "<th>TX on</th>\n\r";
     echo "<th onclick=tabSort(\"TOP\")>TX off</th>\n\r";
+
+    if( (MON == "SHOW") ) {
+    	echo "<th>Monitor TG</th>\n\r";
+    }
 
     for ($i=0; $i<count($logs, 0); $i++)
     {
@@ -117,10 +125,12 @@ if (count($logs) >= 0){
                     echo '<td class=\'grey\'></td>';
                 }
 		
-                if(preg_match('/TX/i',$logs[$i]['STATUS'])) {
+    		if( (TG == "SHOW") ) {
+                    if(preg_match('/TX/i',$logs[$i]['STATUS'])) {
 			echo '<td class=\'red\'>'.$logs[$i]['TG'].'</td>';
-		} else {
+		    } else {
 			echo '<td class=\'grey\'>'.$logs[$i]['TG'].'</td>';
+		    }
 		}
 
                 if(preg_match('/TX/i',$logs[$i]['STATUS'])) {
@@ -129,18 +139,22 @@ if (count($logs) >= 0){
                 } else {
                     echo '<td class="grey">'.$logs[$i]['TX_S'].'</td>';
                     echo '<td class="grey">'.$logs[$i]['TX_E'].'</td>';
-                }
+		}
+
+    		if( (MON == "SHOW") ) {
+		    echo '<td class="grey">'.$logs[$i]['MON'].'</td>';
+		}
                 echo "</tr>\n\r";
             } // END NEWLOGFILEDATA FALSE
             // add marker for new logfiledata
             if (preg_match('/NEWLOGFILEDATA/i', $logs[$i]['CALL'])) {
-                echo "<tr><th class='logline' colspan='6'></th></tr>\n\r";
+                echo "<tr><th class='logline' colspan='7'></th></tr>\n\r";
             }
         }
     }
 
     if( preg_match('/'.REFRESHSTATUS.'/i', 'SHOW')) {
-        echo "<tr><th colspan='6'>SVXReflector-Dashboard -=[ ".date("Y-m-d | H:i:s"." ]=-</th></tr>\n\r");
+        echo "<tr><th colspan='7'>SVXReflector-Dashboard -=[ ".date("Y-m-d | H:i:s"." ]=-</th></tr>\n\r");
     }
 
     if( preg_match('/'.LOGFILETABLE.'/i', 'SHOW')) {
@@ -151,8 +165,8 @@ if (count($logs) >= 0){
                 $all_logs=array_merge($all_logs, $lastlog);
             }
         }
-        echo "<tr><th colspan='6'>Logfile</th></tr>\n\r
-        <td class='logshow'; colspan='6'><pre>".implode("",$all_logs)."</pre></td></tr>";
+        echo "<tr><th colspan='7'>Logfile</th></tr>\n\r
+        <td class='logshow'; colspan='7'><pre>".implode("",$all_logs)."</pre></td></tr>";
     }
     echo "</table>\n\r";
 }

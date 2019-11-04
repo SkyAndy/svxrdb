@@ -14,7 +14,7 @@ function getdata($logfilename) {
     $member = array( CLIENTLIST );
 
     for($i=0;$i<count($member);$i++){
-        $clients[$i] = array('CALL' => $member[$i], 'LOGINOUTTIME'=> "time", 'IP'=> "ip", 'STATUS'=> "OFFLINE", 'TX_S'=> "OFFLINE", 'TX_E'=> "OFFLINE", 'TG'=> "TG");
+        $clients[$i] = array('CALL' => $member[$i], 'LOGINOUTTIME'=> "time", 'IP'=> "ip", 'STATUS'=> "OFFLINE", 'TX_S'=> "OFFLINE", 'TX_E'=> "OFFLINE", 'TG'=> "TG", 'MON'=> "not see" );
     }
 
     // Recovering old data logrotate issues
@@ -25,9 +25,29 @@ function getdata($logfilename) {
     }
 
     foreach ($logline as $value) {
-        $value = str_replace(" CEST:", "",$value);
+	$value = str_replace(" CEST:", "",$value);
+	
+	
+        if(preg_match("/Monitor TG/i", $value)) {
+            $data = explode(" ",$value);
+		
+	    $data[2] = str_replace(":","",$data[2]);	
+            if (($key = array_search($data[2], array_column($clients, 'CALL'))) !==FALSE) {
+		$ctg="";
+		for($itg=5;$itg<count($data);$itg++){
+			$ctg.=$data[$itg]." ";
+		}
+		// add TG Monitoring
+		$clients[$key]['MON']=$ctg;
+                $clients[$key]['SID']=logtounixtime("$data[0]-".substr($data[1], 0, -1));
+            } else {
+                //member not found add im
+                $clients[] = array( 'CALL'=> $data[2], 'STATUS'=> "MONITOR",
+                'SID'=> logtounixtime("$data[0]-".substr($data[1], 0, -1)) );
+            }
+	}// END Monitor TG
 
-        if(preg_match("/Login OK from/i", $value)) {
+	if(preg_match("/Login OK from/i", $value)) {
             $data = explode(" ",$value);
             /*
     Array

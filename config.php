@@ -33,10 +33,15 @@ $LASTHEARD = "TOP"; // EAR or TOP
 set NO legend not showing */
 define("LEGEND", "EN");
 
+// set showing monitoring talkgroup yes(SHOW) or not(SHOWNO)
+define("MON", "SHOW");
+
+// set showing talkgroup yes(SHOW) or not (SHOWNO)
+define("TG", "SHOW");
 
 //do not change this values
 define("CLIENTLIST", "CALL");
-define("DBVERSION", "20190411.1718" );
+define("DBVERSION", "20190411.1830" );
 $lastheard_call = "CALL";
 $clients[] = array();
 // ----
