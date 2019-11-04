@@ -163,6 +163,18 @@ if( LEGEND == "EN") {
     echo '<tr><td><center><img src="./double.png"></center></td><td>Another station is already talking</td></tr>';
     echo '<tr><td><center><img src="./ear.png"></center></td><td>Last heard station, at last heard sorting</td></tr>';
     echo '<tr><td><center></center></td><td>Switch sorting with click on Callsign client / TX off head</td></tr></table>';
+echo '<pre>
+9*# -- Talk group status
+90# -- Not implemented yet. Reserved for help.
+91# -- Select previous talk group
+91[TG]# -- Select talk group TG#
+92# -- QSY all active nodes to a talk group assigned by the reflector server
+92[TG]# -- QSY all active nodes to TG#
+93# -- Follow last QSY
+94[TG]# -- Temporarily monitor TG#
+<br>
+';
+
 }
 
 if( LEGEND == "DE") {
@@ -171,17 +183,19 @@ if( LEGEND == "DE") {
     echo '<tr><td><center><img src="./double.png"></center></td><td>Eine andere Station spricht schon</td></tr>';
     echo '<tr><td><center><img src="./ear.png"></center></td><td>Zuletzt gehörte Station, bei Last Heard Sortierung </td></tr>';
     echo '<tr><td><center></center></td><td>Sortierung Umschalten mit Klick auf Callsign client / TX off Tabellenkopf</td></tr></table>';
-}
-echo '<p>
-<p>9*# -- Talk group status
-<p>90# -- Not implemented yet. Reserved for help.
-<p>91# -- Select previous talk group
-<p>91TG# -- Select talk group TG#
-<P>92# -- QSY all active nodes to a talk group assigned by the reflector server
-<p>92TG# -- QSY all active nodes to TG#
-<p>93# -- Follow last QSY
-<p>94TG# -- Temporarily monitor TG#
+echo '<pre>
+9*# -- Sprechfruppe Status
+90# -- nicht aktiv
+91# -- vorher benutze Sprechgruppe
+91[TG]# -- benutze Sprechgruppe TG#
+92# -- QSY alle aktiven Benutzer zur Sprechgruppe wechseln die am Server eingestellt ist
+92[TG]# -- QSY alle aktiven Benutzer wechseln zur Sprechruppe TG#
+93# -- folge dem letzten QSY
+94[TG]# -- vorr&uuml;bergehend h&ouml;ren der Sprechgruppe TG#
+<br>
 ';
+
+}
 
 echo '<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>&nbsp;<a style="font-size: 12px; text-decoration: none" rel="github" href="https://github.com/SkyAndy/svxrdb/">get your own Dashboard v'.DBVERSION.'</a>';
 ?>

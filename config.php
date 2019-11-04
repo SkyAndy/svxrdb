@@ -36,7 +36,7 @@ define("LEGEND", "EN");
 
 //do not change this values
 define("CLIENTLIST", "CALL");
-define("DBVERSION", "20182212.1741" );
+define("DBVERSION", "20190411.1718" );
 $lastheard_call = "CALL";
 $clients[] = array();
 // ----
