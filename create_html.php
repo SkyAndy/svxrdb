@@ -57,6 +57,7 @@ if (count($logs) >= 0){
     }
 
     echo '<th class="state">state</th>'."\n\r";
+    echo "<th>TG</th>\n\r";
     echo "<th>TX on</th>\n\r";
     echo "<th onclick=tabSort(\"TOP\")>TX off</th>\n\r";
 
@@ -115,6 +116,12 @@ if (count($logs) >= 0){
                 if (preg_match('/ALREADY/i',$logs[$i]['STATUS'])) {
                     echo '<td class=\'grey\'></td>';
                 }
+		
+                if(preg_match('/TX/i',$logs[$i]['STATUS'])) {
+			echo '<td class=\'red\'>'.$logs[$i]['TG'].'</td>';
+		} else {
+			echo '<td class=\'grey\'>'.$logs[$i]['TG'].'</td>';
+		}
 
                 if(preg_match('/TX/i',$logs[$i]['STATUS'])) {
                     echo '<td class="yellow">'.$logs[$i]['TX_S'].'</td>';
@@ -165,6 +172,16 @@ if( LEGEND == "DE") {
     echo '<tr><td><center><img src="./ear.png"></center></td><td>Zuletzt gehörte Station, bei Last Heard Sortierung </td></tr>';
     echo '<tr><td><center></center></td><td>Sortierung Umschalten mit Klick auf Callsign client / TX off Tabellenkopf</td></tr></table>';
 }
+echo '<p>
+<p>9*# -- Talk group status
+<p>90# -- Not implemented yet. Reserved for help.
+<p>91# -- Select previous talk group
+<p>91TG# -- Select talk group TG#
+<P>92# -- QSY all active nodes to a talk group assigned by the reflector server
+<p>92TG# -- QSY all active nodes to TG#
+<p>93# -- Follow last QSY
+<p>94TG# -- Temporarily monitor TG#
+';
 
 echo '<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>&nbsp;<a style="font-size: 12px; text-decoration: none" rel="github" href="https://github.com/SkyAndy/svxrdb/">get your own Dashboard v'.DBVERSION.'</a>';
 ?>

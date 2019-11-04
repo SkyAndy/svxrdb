@@ -10,7 +10,11 @@ $userdb_array = [
     'DB0MGN-2m' => 'Jens (DJ1JAY) Thüringen',
     'DL7ATO'    => 'Manfred  Berlin',
     'DL2HAM'    => 'Frank W.See',
-    'V51SA'     => 'Angela Namibia' /* ATTENTION last entry have no , at end of line !!! */
+    'V51SA'     => 'Angela Namibia', /* ATTENTION last entry have no , at end of line !!! */
+    'DC7XJ'	=> 'Bernd',
+    'DB0ULM'	=> 'Thomas',
+    'DL5XL'	=> 'Felix aus Hagen',
+    'DL6JOG'	=> 'Roger'
 ];
 
 ?>

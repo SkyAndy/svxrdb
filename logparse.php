@@ -14,7 +14,7 @@ function getdata($logfilename) {
     $member = array( CLIENTLIST );
 
     for($i=0;$i<count($member);$i++){
-        $clients[$i] = array('CALL' => $member[$i], 'LOGINOUTTIME'=> "time", 'IP'=> "ip", 'STATUS'=> "OFFLINE", 'TX_S'=> "OFFLINE", 'TX_E'=> "OFFLINE");
+        $clients[$i] = array('CALL' => $member[$i], 'LOGINOUTTIME'=> "time", 'IP'=> "ip", 'STATUS'=> "OFFLINE", 'TX_S'=> "OFFLINE", 'TX_E'=> "OFFLINE", 'TG'=> "TG");
     }
 
     // Recovering old data logrotate issues
@@ -132,7 +132,7 @@ function getdata($logfilename) {
 
        if(preg_match("/Talker start/i", $value)) {
             $data = explode(" ",$value);
-            $data[2] = str_replace(":","",$data[2]);
+	    $data[2] = str_replace(":","",$data[2]);
             /*
             Array
     (
@@ -141,15 +141,18 @@ function getdata($logfilename) {
         [2] => DO0SE:
         [3] => Talker
         [4] => start
-        [5] =>
+	[5] => on
+	[6] => TG 
+	[7] => #2621 
     )
             */
-            if (($key = array_search($data[2], array_column($clients, 'CALL'))) !==FALSE) {
+	    if (($key = array_search($data[2], array_column($clients, 'CALL'))) !==FALSE) {
                 $clients[$key]['STATUS']="TX";
                 $clients[$key]['TX_S']=substr($data[1], 0, -1); //: remove from timestring
                 $clients[$key]['TX_E']=substr($data[1], 0, -1); //: remove from timestring
                 $clients[$key]['SID']=logtounixtime("$data[0]-".substr($data[1], 0, -1));
-                $lastheard_call = $data[2];
+		$clients[$key]['TG']=$data[7];
+		$lastheard_call = $data[2];
             } else {
                 //member not found add im
                 $clients[] = array( 'CALL'=> $data[2], 'STATUS'=> "TX",

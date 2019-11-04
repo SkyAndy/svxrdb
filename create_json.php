@@ -6,10 +6,6 @@ require_once('logparse.php');
 require_once('array_column.php');
 require_once('userdb.php');
 
-if(isset($_COOKIE["svxrdb"])) { 
-    $LASTHEARD = $_COOKIE["svxrdb"];
-}
-
 $logs = array();
 if(count($LOGFILES,0) >0) {
     for($i=0; $i<count($LOGFILES,0); $i++) {
@@ -31,6 +27,8 @@ for ($i=0; $i<count($logs, 0); $i++) {
     }
 }
 header("Content-type: application/json");
+echo "{\"state\": \"success\", \"data\": ";
 echo json_encode($logs);
+echo "}";
 
 ?>
