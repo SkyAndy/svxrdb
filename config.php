@@ -41,7 +41,7 @@ define("TG", "SHOW");
 
 //do not change this values
 define("CLIENTLIST", "CALL");
-define("DBVERSION", "20190411.1830" );
+define("DBVERSION", "20191123.1051" );
 $lastheard_call = "CALL";
 $clients[] = array();
 // ----

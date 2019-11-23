@@ -5,6 +5,7 @@ require_once('function.php');
 require_once('logparse.php');
 require_once('array_column.php');
 require_once('userdb.php');
+require_once('tgdb.php');
 
 if(isset($_COOKIE["svxrdb"])) {
     $LASTHEARD = $_COOKIE["svxrdb"];
@@ -127,7 +128,7 @@ if (count($logs) >= 0){
 		
     		if( (TG == "SHOW") ) {
                     if(preg_match('/TX/i',$logs[$i]['STATUS'])) {
-			echo '<td class=\'red\'>'.$logs[$i]['TG'].'</td>';
+			echo '<td class=\'red\'>'.$logs[$i]['TG'].' '.$tgdb_array[$logs[$i]['TG']].'</td>';
 		    } else {
 			echo '<td class=\'grey\'>'.$logs[$i]['TG'].'</td>';
 		    }
