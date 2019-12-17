@@ -14,7 +14,8 @@ $userdb_array = [
     'DC7XJ'	=> 'Bernd',
     'DB0ULM'	=> 'Thomas',
     'DL5XL'	=> 'Felix aus Hagen',
-    'DL6JOG'	=> 'Roger'
+    'DL6JOG'	=> 'Roger',
+    'DB0SLK'	=> 'DH1CAD Schönebeck Gerald'
 ];
 
 ?>

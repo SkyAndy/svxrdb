@@ -31,7 +31,7 @@ $LASTHEARD = "TOP"; // EAR or TOP
 
 /* set to DE Deutsch to EN for English languange
 set NO legend not showing */
-define("LEGEND", "EN");
+define("LEGEND", "DE");
 
 // set showing monitoring talkgroup yes(SHOW) or not(SHOWNO)
 define("MON", "SHOW");
@@ -39,9 +39,12 @@ define("MON", "SHOW");
 // set showing talkgroup yes(SHOW) or not (SHOWNO)
 define("TG", "SHOW");
 
+// set statusinfo from svxreflector server data yes (SHOW) or not (SHOWNO)
+define("SERVERSTATUS", "SHOW");
+
 //do not change this values
 define("CLIENTLIST", "CALL");
-define("DBVERSION", "20191123.1051" );
+define("DBVERSION", "20191217.0506" );
 $lastheard_call = "CALL";
 $clients[] = array();
 // ----

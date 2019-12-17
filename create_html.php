@@ -199,17 +199,34 @@ if( LEGEND == "DE") {
     echo '<tr><td><center><img src="./ear.png"></center></td><td>Zuletzt gehörte Station, bei Last Heard Sortierung </td></tr>';
     echo '<tr><td><center></center></td><td>Sortierung Umschalten mit Klick auf Callsign client / TX off Tabellenkopf</td></tr></table>';
 echo '<pre>
-9*# -- Sprechfruppe Status
-90# -- nicht aktiv
-91# -- vorher benutze Sprechgruppe
-91[TG]# -- benutze Sprechgruppe TG#
-92# -- QSY alle aktiven Benutzer zur Sprechgruppe wechseln die am Server eingestellt ist
-92[TG]# -- QSY alle aktiven Benutzer wechseln zur Sprechruppe TG#
-93# -- folge dem letzten QSY
-94[TG]# -- vorr&uuml;bergehend h&ouml;ren der Sprechgruppe TG#
-<br>
+9*# -- Sprechruppen-Status
+90# -- Noch nicht implementiert. Reserviert für Hilfefunktion.
+91# -- W&auml;hle die vorherige Sprechgruppe
+91[TG]# -- W&auml;hlt Sprechgruppe TG#
+92# -- QSY alle aktiven Teilnehmer zu einer vom Server bestimmten Sprechgruppe wechseln.
+92[TG]# -- QSY aller aktiven Teilnehmer zur TG#
+93# -- Wiederhole letztes QSY
+94[TG]# -- H&ouml;re tempor&auml;r auf TG#</BR>
 ';
+}
 
+if( SERVERSTATUS == "SHOW") {
+$tuCurl = curl_init(); 
+curl_setopt($tuCurl, CURLOPT_URL, "http://hamcloud.info/status"); 
+curl_setopt($tuCurl, CURLOPT_PORT , 8090); 
+curl_setopt($tuCurl, CURLOPT_VERBOSE, 0); 
+curl_setopt($tuCurl, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($tuCurl, CURLOPT_CONNECTTIMEOUT, 5); // 5 seconds timeout
+
+$tuData = curl_exec($tuCurl); 
+curl_close($tuCurl);
+
+$data = json_decode($tuData,true);
+$callsign = array_keys($data["nodes"]);
+
+for ($station = 0; $station < count($callsign); $station+=1) {
+	echo $callsign[$station]." ".$data["nodes"][$callsign[$station]]["nodeLocation"]." ".$data["nodes"][$callsign[$station]]["swVer"]."<br>";
+}
 }
 
 echo '<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>&nbsp;<a style="font-size: 12px; text-decoration: none" rel="github" href="https://github.com/SkyAndy/svxrdb/">get your own Dashboard v'.DBVERSION.'</a>';
