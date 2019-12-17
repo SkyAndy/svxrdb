@@ -199,7 +199,7 @@ if( LEGEND == "DE") {
     echo '<tr><td><center><img src="./ear.png"></center></td><td>Zuletzt gehörte Station, bei Last Heard Sortierung </td></tr>';
     echo '<tr><td><center></center></td><td>Sortierung Umschalten mit Klick auf Callsign client / TX off Tabellenkopf</td></tr></table>';
 echo '<pre>
-9*# -- Sprechruppen-Status
+9*# -- Sprechgruppen-Status
 90# -- Noch nicht implementiert. Reserviert für Hilfefunktion.
 91# -- W&auml;hle die vorherige Sprechgruppe
 91[TG]# -- W&auml;hlt Sprechgruppe TG#
